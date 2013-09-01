@@ -39,7 +39,7 @@ class World extends Group
 
     updatePlayer: ->
         if (@scene.isTouch)
-            @player.rize() if @player.isAlive()
+            @player.rise() if @player.isAlive()
         @player.update()
         return
 
