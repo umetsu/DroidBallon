@@ -4,8 +4,8 @@
 class Droid extends Sprite
     @WIDTH = 32
     @HEIGHT = 32
-    @MAX_RIZE = -5.0
-    @RIZE = -0.3
+    @MAX_RISE = -5.0
+    @RISE = -0.3
     constructor: (x, y)->
         super Droid.WIDTH, Droid.HEIGHT
         @image = Game.instance.assets[R.PLAYER_IMAGE]
@@ -14,14 +14,14 @@ class Droid extends Sprite
         @frame = 4
         @life = 2
         @update = @updateFlying
-        @isRize = false
+        @isRise = false
         @invincibleTime = 0
 
-    rize: ->
-        @isRize = true
-        @vy += Droid.RIZE
-        if (@vy < Droid.MAX_RIZE)
-            @vy = Droid.MAX_RIZE
+    rise: ->
+        @isRise = true
+        @vy += Droid.RISE
+        if (@vy < Droid.MAX_RISE)
+            @vy = Droid.MAX_RISE
 
     updateFlying: ->
         game = Game.instance
@@ -29,11 +29,11 @@ class Droid extends Sprite
         @y += @vy
 
         frameWidth = 2
-        if (@isRize)
+        if (@isRise)
             @frame = (1 - @frame % frameWidth) + @life * frameWidth if game.frame % 4 == 0
         else
             @frame = @life * frameWidth
-        @isRize = false
+        @isRise = false
 
         if (@invincibleTime > 0)
             @visible = !@visible if game.frame % 2 == 0

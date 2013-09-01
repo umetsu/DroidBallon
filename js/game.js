@@ -348,7 +348,7 @@
     World.prototype.updatePlayer = function() {
       if (this.scene.isTouch) {
         if (this.player.isAlive()) {
-          this.player.rize();
+          this.player.rise();
         }
       }
       this.player.update();
@@ -507,9 +507,9 @@
 
     Droid.HEIGHT = 32;
 
-    Droid.MAX_RIZE = -5.0;
+    Droid.MAX_RISE = -5.0;
 
-    Droid.RIZE = -0.3;
+    Droid.RISE = -0.3;
 
     function Droid(x, y) {
       Droid.__super__.constructor.call(this, Droid.WIDTH, Droid.HEIGHT);
@@ -519,15 +519,15 @@
       this.frame = 4;
       this.life = 2;
       this.update = this.updateFlying;
-      this.isRize = false;
+      this.isRise = false;
       this.invincibleTime = 0;
     }
 
-    Droid.prototype.rize = function() {
-      this.isRize = true;
-      this.vy += Droid.RIZE;
-      if (this.vy < Droid.MAX_RIZE) {
-        return this.vy = Droid.MAX_RIZE;
+    Droid.prototype.rise = function() {
+      this.isRise = true;
+      this.vy += Droid.RISE;
+      if (this.vy < Droid.MAX_RISE) {
+        return this.vy = Droid.MAX_RISE;
       }
     };
 
@@ -537,14 +537,14 @@
       this.vy += World.GRAVITY;
       this.y += this.vy;
       frameWidth = 2;
-      if (this.isRize) {
+      if (this.isRise) {
         if (game.frame % 4 === 0) {
           this.frame = (1 - this.frame % frameWidth) + this.life * frameWidth;
         }
       } else {
         this.frame = this.life * frameWidth;
       }
-      this.isRize = false;
+      this.isRise = false;
       if (this.invincibleTime > 0) {
         if (game.frame % 2 === 0) {
           this.visible = !this.visible;
