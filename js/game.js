@@ -58,7 +58,10 @@
     if (event.code === 'Escape') { title(); return; }
     if (scene === 'title') {
       if (event.code === 'KeyH') scene = 'scores';
-      else start();
+      else {
+        start();
+        if (event.code === 'Space' || event.code === 'ArrowUp') keys.add(event.code);
+      }
     } else if (scene === 'scores') title();
     else if (scene === 'over') { if (world.ticks >= 15) title(); }
     else if (event.code === 'Space' || event.code === 'ArrowUp') keys.add(event.code);
