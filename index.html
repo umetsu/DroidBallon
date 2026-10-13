@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,user-scaleble=no">
-    <script type="text/javascript" src="js/underscore-min.js"></script>
-    <script type="text/javascript" src="js/enchant/enchant.js"></script>
-    <script type="text/javascript" src="js/enchant/plugins/util.enchant.js"></script>
-    <script type="text/javascript" src="js/game.js"></script>
-    <style type="text/css" media="all">
-        body {
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-    <title>template</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#00aaff">
+  <title>DroidBallon</title>
+  <script src="js/game.js" defer></script>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #152536; color: #fff; font: 14px system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; }
+    canvas { display: block; width: min(100vw, 320px, calc(100dvh * 2 / 3)); height: auto; background: #00aaff; touch-action: none; image-rendering: pixelated; }
+    canvas:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+    #status { max-width: 360px; margin: 12px; line-height: 1.6; }
+  </style>
 </head>
 <body>
-
+  <canvas id="game" width="320" height="480" tabindex="0" aria-label="DroidBallon。画面またはSpace・上矢印キーの長押しで上昇するゲーム。">Canvas対応のブラウザをご利用ください。</canvas>
+  <p id="status" role="status">画像を読み込んでいます…</p>
 </body>
 </html>
