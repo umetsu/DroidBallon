@@ -6,10 +6,12 @@ Canvas 2D、Pointer Events、requestAnimationFrameで動作するブラウザゲ
 
 ## 起動
 
-生成済みの`js/`を同梱しているため、遊ぶだけならNode.jsやビルドは不要です。
+Node.jsとnpmをインストールし、初回は依存関係のインストールとビルドを行ってください。
 ES Modulesを使うため、このディレクトリをHTTPサーバーで配信してください（`file://`での直接起動は非対応です）。
 
 ```sh
+npm ci
+npm run build
 python3 -m http.server 8000
 ```
 
@@ -27,7 +29,8 @@ npm test       # ビルドと回帰テスト
 npm run watch  # 編集時にjs/を再生成
 ```
 
-`src/`を編集し、`npm run build`で生成した`js/`も一緒にコミットしてください。
+`src/`を編集し、`npm run build`で`js/`を生成してください。
+`js/`は生成物のためGit管理対象外です。公開時にもビルドを実行し、生成した`js/`を配信してください。
 TypeScriptのみを開発依存として使い、バンドラーや実行時ライブラリは使いません。
 
 旧CoffeeScriptの責務分担に沿ってクラスを分けています。
