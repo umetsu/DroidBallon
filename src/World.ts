@@ -61,7 +61,7 @@ export class World {
   }
 
   get isGameOver(): boolean {
-    return this.player.y + Droid.HEIGHT < 0 || this.player.y > 360;
+    return this.player.y > 360;
   }
 
   render(renderer: Renderer, frame: number): void {
