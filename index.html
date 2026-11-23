@@ -15,21 +15,15 @@
     @media (pointer: coarse) and (max-width: 767px),
            (pointer: coarse) and (max-height: 600px) {
       body {
-        height: 100dvh;
+        min-height: 100dvh;
         padding: env(safe-area-inset-top) env(safe-area-inset-right)
                  env(safe-area-inset-bottom) env(safe-area-inset-left);
-        justify-content: flex-end;
+        justify-content: center;
       }
       canvas {
-        width: min(100%, calc((100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom)) * 2 / 3));
+        width: min(100%, calc((100dvh - 7em - env(safe-area-inset-top) - env(safe-area-inset-bottom)) * 2 / 3));
       }
-      #status {
-        position: absolute;
-        top: env(safe-area-inset-top);
-        background: #152536;
-        padding: 4px 8px;
-      }
-      #status.instructions { display: none; }
+      #status { text-align: center; }
     }
   </style>
 </head>

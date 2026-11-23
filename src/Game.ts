@@ -42,10 +42,8 @@ export class Game implements SceneContext {
       await this.resources.load();
       this.status.textContent = '画面を押す、またはSpace / ↑キーを長押しすると上昇します。Enter: 開始、H: ハイスコア、Esc: タイトル。';
       this.showTitle();
-      this.status.classList.add('instructions');
       requestAnimationFrame(this.loop);
     } catch (error) {
-      this.status.classList.remove('instructions');
       this.status.textContent = `${error instanceof Error ? error.message : String(error)}。ページを再読み込みしてください。`;
     }
   }
