@@ -171,7 +171,8 @@
     img.onerror = () => reject(new Error(`画像を読み込めません: ${name}`));
     img.src = `assets/images/${name}.png`;
   }))).then(() => {
+    status.classList.add('instructions');
     status.textContent = '画面を押す、またはSpace / ↑キーを長押しすると上昇します。Enter: 開始、H: ハイスコア、Esc: タイトル。';
     title(); requestAnimationFrame(loop);
-  }).catch(error => { status.textContent = error.message + '。ページを再読み込みしてください。'; });
+  }).catch(error => { status.classList.remove('instructions'); status.textContent = error.message + '。ページを再読み込みしてください。'; });
 })();
