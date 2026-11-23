@@ -21,6 +21,10 @@ export class Droid {
     if (held && this.isAlive()) this.rise();
     this.vy += this.isAlive() ? Droid.GRAVITY : Droid.GRAVITY + 0.2;
     this.y += this.vy;
+    if (this.y <= 0 && this.vy < 0) {
+      this.y = 0;
+      this.vy = -this.vy;
+    }
     this.invincible = Math.max(0, this.invincible - 1);
     this.sprite = this.life * 2 + ((held || !this.life) ? Math.floor(frame / 4) % 2 : 0);
   }

@@ -6,7 +6,7 @@ Canvas 2D、Pointer Events、requestAnimationFrameで動作するブラウザゲ
 
 ## 起動
 
-Node.jsとnpmをインストールし、初回は依存関係のインストールとビルドを行ってください。
+Node.js 26系とnpmをインストールし、初回は依存関係のインストールとビルドを行ってください。
 ES Modulesを使うため、このディレクトリをHTTPサーバーで配信してください（`file://`での直接起動は非対応です）。
 
 ```sh
@@ -20,7 +20,7 @@ Chrome、Edge、Firefox、SafariなどCanvasとPointer Eventsに対応した現�
 
 ## 開発
 
-Node.jsとnpmをインストールしてから実行してください。
+Node.js 26系とnpmで実行してください。
 
 ```sh
 npm ci

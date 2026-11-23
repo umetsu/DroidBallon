@@ -16,13 +16,31 @@ function context() {
 }
 
 test('ascent is capped before gravity; a destroyed Droid falls faster', () => {
-  const player = new Droid();
+  const player = new Droid(12, 500);
   for (let i = 0; i < 100; i++) player.update(true, i);
   assert.ok(Math.abs(player.vy - (-5 + 0.14)) < 1e-12);
   player.life = 0;
   player.vy = 0;
   player.update(true, 100);
   assert.ok(Math.abs(player.vy - 0.34) < 1e-12);
+});
+
+test('the Droid bounces at the top and moves back into the playfield', () => {
+  for (const startY of [1, 0.5]) {
+    const world = new World();
+    const { player } = world;
+    player.y = startY;
+    player.vy = -1 - Droid.GRAVITY;
+
+    world.update(false, 1);
+    assert.equal(player.y, 0);
+    assert.equal(player.vy, 1);
+    assert.equal(world.isGameOver, false);
+
+    world.update(true, 2);
+    assert.ok(player.y > 0);
+    assert.ok(player.vy > 0);
+  }
 });
 
 test('an enemy hit protects the player for 31 updates', () => {
