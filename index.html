@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#00aaff">
   <title>DroidBallon</title>
   <script src="js/game.js" defer></script>
@@ -12,6 +12,25 @@
     canvas { display: block; width: min(100vw, 320px, calc(100dvh * 2 / 3)); height: auto; background: #00aaff; touch-action: none; image-rendering: pixelated; }
     canvas:focus-visible { outline: 2px solid white; outline-offset: 2px; }
     #status { max-width: 360px; margin: 12px; line-height: 1.6; }
+    @media (pointer: coarse) and (max-width: 767px),
+           (pointer: coarse) and (max-height: 600px) {
+      body {
+        height: 100dvh;
+        padding: env(safe-area-inset-top) env(safe-area-inset-right)
+                 env(safe-area-inset-bottom) env(safe-area-inset-left);
+        justify-content: flex-end;
+      }
+      canvas {
+        width: min(100%, calc((100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom)) * 2 / 3));
+      }
+      #status {
+        position: absolute;
+        top: env(safe-area-inset-top);
+        background: #152536;
+        padding: 4px 8px;
+      }
+      #status.instructions { display: none; }
+    }
   </style>
 </head>
 <body>
