@@ -50,7 +50,10 @@ export class Game implements SceneContext {
 
   showTitle(): void { this.replaceScene(new TitleScene(this)); }
   start(): void { this.replaceScene(new GameScene(this)); }
-  showScores(): void { this.replaceScene(new HighScoreScene(this)); }
+  showScores(): void {
+    this.settings.load();
+    this.replaceScene(new HighScoreScene(this));
+  }
 
   private replaceScene(scene: Scene): void {
     this.input.clear();

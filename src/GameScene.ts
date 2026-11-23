@@ -33,6 +33,7 @@ export class GameScene implements Scene {
     this.state = 'over';
     this.ticks = 0;
     this.game.input.clear();
+    this.game.settings.load();
     this.game.settings.addScore(this.world.score);
     this.game.settings.save();
   }
