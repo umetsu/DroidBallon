@@ -9,7 +9,7 @@ import { World } from '../js/World.js';
 
 function context() {
   return {
-    settings: { addScore(score) { this.scores.push(score); }, scores: [], save() { this.saves++; }, saves: 0 },
+    settings: { load() {}, addScore(score) { this.scores.push(score); }, scores: [], save() { this.saves++; }, saves: 0 },
     input: { held: false, clear() { this.held = false; } },
     showTitle() { this.titles++; }, titles: 0,
   };
@@ -162,4 +162,32 @@ test('Settings tolerates broken data and blocked storage', () => {
   assert.doesNotThrow(() => settings.save());
   assert.equal(settings.highScores[0], 2000);
   delete globalThis.localStorage;
+});
+
+test('Game over preserves a newer score saved by another tab', () => {
+  let saved = null;
+  globalThis.localStorage = {
+    getItem: () => saved,
+    setItem: (_key, value) => { saved = value; },
+  };
+  try {
+    const finish = (settings, score) => {
+      const scene = new GameScene({ ...context(), settings });
+      scene.state = 'playing';
+      scene.world.score = score;
+      scene.world.player.y = 361;
+      scene.update(1);
+    };
+    const first = new Settings();
+    const second = new Settings();
+    first.load();
+    second.load();
+    finish(first, 2300);
+    finish(second, 1700);
+    const reopened = new Settings();
+    reopened.load();
+    assert.deepEqual(reopened.highScores.slice(0, 2), [2300, 1700]);
+  } finally {
+    delete globalThis.localStorage;
+  }
 });
